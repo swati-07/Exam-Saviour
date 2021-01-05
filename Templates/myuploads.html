@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Uploads</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	{% load static%}
+	
+		
+	<style type="text/css">
+		body{
+			background-image: url("{% static 'bcg3.jpg'%}");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+		.radius{
+			border-radius: 20px;
+		}
+		.break{
+			overflow-wrap: break-word;
+		}
+
+	</style>
+</head>
+<body>
+	<div class='container-fluid p-5'>
+	<div class='row'>
+	<div class='col-sm-3'></div>
+	<div class='col-sm-6'>
+		<br><br>
+		<br><br><h1 class='text-center bg-success radius'>My Uploads</h1><br><br>
+		{% for note in notes%}
+		{% if forloop.counter|divisibleby:2 %}
+		<div class='row bg-danger radius'>
+			<div class='col-sm-3'><p><strong>Topic :</strong>{{note.topic_name}} </p></div>
+			<div class='col-sm-3'><p><strong>Description :</strong> {{note.description}} </p></div>
+			<div class='col-sm-3'><p class='break'> <a href={{note.notes.url}}>{{note.notes}}</a> </p></div>
+			<div class='col-sm-3 text-right'><p><strong>Uploaded by-</strong> {{note.name}} </p><a href="{% url 'delete' pk=note.pk%}" class='btn btn-primary'>Delete</a></div>
+		</div><br>
+		{% else%}
+		<div class='row bg-info radius'>
+			<div class='col-sm-3'><p><strong>Topic :</strong>{{note.topic_name}} </p></div>
+			<div class='col-sm-3'><p><strong>Description :</strong> {{note.description}} </p></div>
+			<div class='col-sm-3'><p class='break'><a href="{{note.notes.url}}">{{note.notes}}</a> </p></div>
+			<div class='col-sm-3 text-right'><p><strong>Uploaded by-</strong> {{note.name}} </p><a href="{% url 'delete' pk=note.pk%}" class='btn btn-primary' >Delete</a></div>
+		</div><br>
+		{% endif%}
+		{% endfor%}
+	</div>
+	</div>
+</div>
+<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

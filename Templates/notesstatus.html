@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Notes Status</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	{% load static%}
+
+	
+		
+	<style type="text/css">
+		body{
+			background-image: url("{% static 'bcg3.jpg'%}");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+		.radius{
+			border-radius: 20px;
+		}
+		.break{
+			overflow-wrap: break-word;
+		}
+
+	</style>
+	
+</head>
+<body>
+	<div class='container'>
+		<br><br>
+		<br>
+		<h1 class='bg-warning radius text-center'>Find Your Approved Notes Below</h1><br>
+		{% for note in notes_app%}
+		
+		{% if forloop.counter|divisibleby:2 %}
+		<div class='row bg-danger radius'>
+			<div class='col-sm-3'><p><strong>Topic :</strong>{{note.topic_name}} </p></div>
+			<div class='col-sm-3'><p><strong>Description :</strong> {{note.description}} </p></div>
+			<div class='col-sm-3'><p class='break'> <a href={{note.notes.url}}>{{note.notes}}</a> </p></div>
+			<div class='col-sm-3'><p><strong>Uploaded at-</strong> {{note.uploaded_at}} </p></div>
+		</div><br>
+		{% else%}
+		<div class='row bg-info radius'>
+			<div class='col-sm-3'><p><strong>Topic :</strong>{{note.topic_name}} </p></div>
+			<div class='col-sm-3'><p><strong>Description :</strong> {{note.description}} </p></div>
+			<div class='col-sm-3'><p class='break'><a href="{{note.notes.url}}">{{note.notes}}</a> </p></div>
+			<div class='col-sm-3'><p><strong>Uploaded at-</strong> {{note.uploaded_at}} </p></div>
+		</div><br>
+		{% endif%}
+		{% endfor%}
+	</div>
+	<div class='container'>
+		<br><br>
+		<br>
+		<h1 class='bg-warning radius text-center'>Notes Yet to be Approved</h1>
+		{% for note in notes_unapp%}
+		
+		{% if forloop.counter|divisibleby:2 %}
+		<div class='row bg-danger radius'>
+			<div class='col-sm-3'><p><strong>Topic :</strong>{{note.topic_name}} </p></div>
+			<div class='col-sm-3'><p><strong>Description :</strong> {{note.description}} </p></div>
+			<div class='col-sm-3'><p class='break'> <a href={{note.notes.url}}>{{note.notes}}</a> </p></div>
+			<div class='col-sm-3'><p><strong>Uploaded at-</strong> {{note.uploaded_at}} </p></div>
+		</div><br>
+
+		{% else%}
+		<div class='row bg-info radius'>
+			<div class='col-sm-3'><p><strong>Topic :</strong>{{note.topic_name}} </p></div>
+			<div class='col-sm-3'><p><strong>Description :</strong> {{note.description}} </p></div>
+			<div class='col-sm-3'><p class='break'><a href="{{note.notes.url}}">{{note.notes}}</a> </p></div>
+			<div class='col-sm-3'><p><strong>Uploaded at-</strong> {{note.uploaded_at}} </p></div>
+		</div><br>
+		{% endif%}
+		{% endfor%}
+	</div>
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	{% load static%}
+	
+		
+<style type="text/css">
+	body{
+			background-image: url("{% static 'login.jpg'%}");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+	.pad{
+		
+		padding: 40px;
+		margin-top:20px;
+		margin-left:400px;
+		width: 400px;
+		border-radius: 20px;
+		color: grey;
+	}
+</style>
+</head>
+<body>
+	<div class='container'>
+		<div class='row'>
+			<div class="container  text-center ">
+	<div class="row">
+		<div class="col-6 text-center pad bg-warning">
+			
+			<h1>Register</h1>
+			<br>
+			<form method="POST">
+			{% csrf_token%}
+			{{form.first_name.label}}        {{form.first_name}}<br><br>
+			{{form.last_name.label}}         {{form.last_name}}<br><br>
+			{{form.username.label}}          {{form.username}}<br><br>
+			{{form.email.label}}             {{form.email}}<br><br>
+			{{form.password1.label}}         {{form.password1}}<br><br>
+			{{form.password2.label}}         {{form.password2}}<br><br>
+			
+			<label>Branch</label><input type="text" name='branch' placeholder="ex-CSE,IT etc"><br><br>
+			<label>Student </label><input name='userstatus' type="radio" id='student' value="student">
+			<label>Teacher </label><input name='userstatus' type="radio" id='teacher' value="teacher"><br><br>
+
+			{{form.errors}}<br>
+			<input type="Submit" name="register" class='btn btn-warning'>
+			</form>
+<br>
+	<a href="{% url 'login'%}">Already have an account? Log in.</a>
+		</div>
+	</div>
+	</div>
+		</div>
+	</div>
+
+
+<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Profile</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+{% load static%}
+	
+		
+<style type="text/css">
+	body{
+			background-image: url("{% static 'bcg-profile.jpg'%}");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+	img{
+		border-radius: 100px;
+	}
+	.save{
+		height:50px;
+		font-weight: bolder;
+		width: 200px;
+	}
+	.tab-right{
+		padding-right: 20px;
+	}
+	.tab-more{
+		padding-right: 10px;
+	}
+	.tabmore{
+		padding-right: 25px;
+	}
+	.tab{
+		padding-right: 40px;
+	}
+</style>
+<body>
+<div class='container text-left'>
+	
+	<div class='row text-center'>
+		<h1 class='text-danger'>My Profile :)</h1>
+			</div>
+	<div class='row text-lead'>
+		<div class='col-sm-10'>
+			<img src="{{profile.profile_picture.url}}" height='200px' width="200px">
+		
+		
+			
+			<form method='POST' enctype="multipart/form-data">
+				{% csrf_token%}
+				<br>
+				<label id='profilepicture'>Change Profile Picture :</label>
+				<input type="file" name='profilepicture'><br>
+				<h4>
+				<label id='username' class="tab-more">Username :</label>
+				<input type="text" name="username" id='username' value={{profile.user.username}}><br><br>
+				<label id="firstname">First Name :</label>
+				<input type="text" name="firstname" id="firstname" value={{profile.user.first_name}}><br><br>
+				<label id="firstname">Last Name :</label>
+				<input type="text" name="lastname" id="lastname" value={{profile.user.last_name}}><br><br>
+				<label id='institute' class='tab-right tab-more tabmore'>Institute :<emsb><emsb></label>
+				<input type='text' name='institute' id='institute' value={{profile.institute}}><br><br>
+				<label id='branch' class="tab">Branch :</label>
+				<input type='text' name='branch'  id='branch' value={{profile.branch}}><br><br>
+				
+				<div class='text-left'><input class='btn btn-danger save' type="Submit" value='Save & Continue'></div>
+					
+			</form>
+			</h4>
+		</div>
+		<div class='col-sm-2 text-right'>
+			<h2>About Us</h2>
+			<br><br>
+			<p class='text-danger'>Welcome, {{request.user.username}}.Exam Saviour welcomes you to the community of exam saviours and being a saviour yourself. Get set ready for the preparations with just few clicks.</p>
+			<br><br><br><br>
+			<p> Edit your profile here.. You can add your profile picture too ,fill all the required fields and continue your exam saviour journey.. Happy Learning...</p>
+		</div>
+	</div>
+	
+	
+</div>
+<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

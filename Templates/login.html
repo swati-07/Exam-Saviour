@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	{% load static%}
+	
+		
+<style type="text/css">
+	body{
+			background-image: url("{% static 'login.jpg'%}");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+	.pad{
+		
+		padding: 40px;
+		margin-top:180px;
+		margin-left:400px;
+		width: 400px;
+		border-radius: 20px;
+		color: grey;
+	}
+</style>
+</head>
+<body>
+	
+<div class="container  text-center ">
+	<div class="row">
+		<div class="col-6 text-center pad bg-warning">
+			
+			<h1>Log-In</h1>
+			<br>
+			<form method="POST">
+				{% csrf_token%}
+				<input type="text" name="username" placeholder="username"><br><br>
+				<input type="password" name="password" placeholder="password"><br><br>
+				<input type="Submit" name="login" class='btn btn-info'><br><br>
+			</form>
+<br>
+	<a href="{% url 'register'%}">Don't have an account? Sign In.</a>
+		</div>
+	</div>
+	</div>
+<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+

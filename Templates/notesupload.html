@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Upload Notes</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	{% load static%}
+
+	
+		
+	
+		
+	<style type="text/css">
+		body{
+			background-image: url("{% static 'bcg3.jpg'%}");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+
+		}
+	.pad{
+		
+		padding: 40px;
+		margin-top:200px;
+		margin-left:400px;
+		width: 400px;
+		border-radius: 20px;
+		color: grey;
+	}
+	.big{
+		font-size: 30px;
+	}
+</style>
+</head>
+<body>
+	<div class="container  text-center ">
+	<div class="row">
+		<div class="col-6 text-center pad">
+			
+			<h1>Add Notes Here !</h1>
+			<br>
+			<form method='POST' enctype="multipart/form-data">
+			{% csrf_token%}
+			<p>* Notes will only be uploaded after approval.<br>
+			You can find your unapproved notes in the notes status till then.*</p>
+			{{notes.as_p}}
+			<br>
+			<input type="Submit" class='btn btn-primary btn-block big' value='Add ' name="upload">
+
+		</form>
+			
+<br>
+	
+		</div>
+	</div>
+	</div>
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+

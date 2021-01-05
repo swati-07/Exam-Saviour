@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ExamSaviour</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	{% load static%}
+	<style type="text/css">
+		body{
+			background-image: url("{% static 'bcg2.jpg'%}");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+		.flag{
+			font-family: fantasy;
+			font-weight: bolder;
+			width: 190vh;
+		}
+		
+		.navbtn:hover{
+			width: 350px;
+		}
+		#sort1{
+			display: none;
+			width:300px;
+			padding-left: 30px;
+			padding-right: 35px;
+		
+		}
+		#sort2{
+			display: none;
+			width:200px;
+			padding-left: 30px;
+			padding-right: 35px;
+		}
+		#sort3{
+			display: none;
+			width:200px;
+			padding-left: 30px;
+			padding-right: 35px;
+		}
+		#sort4{
+			display: none;
+			width:200px;
+			padding-left: 30px;
+			padding-right: 35px;
+		}
+		.radius{
+			border-radius: 20px;
+		}
+		.break{
+			overflow-wrap: break-word;
+		}
+		.dp{
+			border-radius: 10px;
+		}
+	</style>
+</head>
+<body>
+	
+
+	<div class='container-fluid row'>
+		<div class='row justify-content-right'>
+			<div class=' flag text-right text-dark text-bold'>
+				<h1 class= 'bg-danger'>Hey  {{request.user.first_name}} !</h1>
+			</div>
+		</div>
+	<div class='col-sm-6'>
+		<div class='row'>
+			<div class='col-sm-4'>
+				<a href="{% url 'myprofile'%}" class='btn btn-primary btn-block navbtn'>My Profile</a>
+			</div>
+		</div><br><br>
+		<div class='row'>
+			<div class='col-sm-4'>
+				<a href="{% url 'myuploads'%}" class='btn btn-info btn-block navbtn'>My Uploaded Notes</a>
+			</div>
+		</div><br><br>
+		<div class='row'>
+			<div class='col-sm-4'>
+				<a href="{% url 'notesupload'%}" class='navbtn btn btn-danger btn-block'>Add Notes</a>
+			</div>
+		</div><br><br>
+		<div class='row'>
+			<div class='col-sm-4'>
+				<a href="{% url 'notesstatus'%}" class='btn navbtn btn-success btn-block'>Notes Status</a>
+			</div>
+
+		</div><br><br><br><br><br><br><br><br><br><br>
+		<div class='row'>
+			<div class='col-sm-4'>
+				<a href='#' id='sort' class='navbtn  btn btn-warning btn-block' onclick='showsort()'>Sort Notes</a>
+			</div>
+		</div><br>
+		<div class='row'>
+			<div class='col-sm-4'>
+			<a href="{% url 'dashboardfaculty'%}" id='sort1'>Faculty </a><br>
+			
+			
+		
+		
+			<a href="{% url 'dashboardstudent'%}" id='sort3'>Students</a><br>
+			
+			
+		</div>
+			
+		</div>
+		<div class='row'>
+			<div class='col-sm-4'>
+				<a href="{% url 'logout'%}" class='navbtn btn btn-primary btn-block'>Logout</a>
+			</div>
+		</div><br><br>
+		
+	</div>
+
+
+
+	<div class='col-sm-6'>
+		<br><br>
+		<br>
+		{% for note in notes%}
+
+		{% if forloop.counter|divisibleby:2 %}
+		<div class='row bg-danger radius'>
+			<div class='col-sm-3'><img src="{{note.user.profile_picture.url}}" class='dp' height='40px' width="40px"><p><strong>Uploaded by-</strong> {{note.name}} </p></div>
+			<div class='col-sm-3'><p><strong>Description :</strong> {{note.description}} </p></div>
+			<div class='col-sm-3'><p class='break'> <a href={{note.notes.url}}>{{note.notes}}</a> </p></div>
+			<div class='col-sm-3'><p><strong>Topic :</strong>{{note.topic_name}} </p></div>
+		</div><br>
+		{% else%}
+		<div class='row bg-info radius'>
+			<div class='col-sm-3'><img src="{{note.user.profile_picture.url}}" class='dp' height='40px' width="40px"><p><strong>Uploaded by-</strong> {{note.name}} </p></div>
+			<div class='col-sm-3'><p><strong>Description :</strong> {{note.description}} </p></div>
+			<div class='col-sm-3'><p class='break'> <a href={{note.notes.url}}>{{note.notes}}</a> </p></div>
+			<div class='col-sm-3'><p><strong>Topic :</strong>{{note.topic_name}} </p></div>
+		</div><br>
+		{% endif%}
+		{% endfor%}
+	</div>
+	</div>
+	
+
+	<script type="text/javascript">
+		function showsort(){
+			$('#sort1').toggle();
+			$('#sort2').toggle();
+			$('#sort3').toggle();
+			$('#sort4').toggle();
+		}
+	</script>
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
